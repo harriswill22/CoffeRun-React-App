@@ -43,7 +43,7 @@ function OrderForm(props){
 
     {/* Submit */}
     <input type="submit"/>
-    <input data-reset-button type="reset"/>
+    <input onClick={props.handleReset} data-reset-button type="reset"/>
         </form>
     );
 }

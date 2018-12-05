@@ -11,11 +11,7 @@ class CoffeeOrder extends Component {
         Flavor : "",
         Size: "",
         Strength: " ",
-        orders: [{ coffee: "lemon",
-        EmailAddress: "ffff",
-        Flavor : "slkf",
-        Size: "skjd",
-        Strength:"fkmfk"}]
+        orders: []
 
     };
 }
@@ -25,6 +21,7 @@ render(){
     <h1 className="Title"> Coffee Run</h1>
     <OrderForm
     onSubmit={this._OnSubmit}
+    handleReset={this._OnReset}
     coffee={this.state.coffee}
     EmailAddress={this.state.EmailAddress}
     Size={this.state.Size}
@@ -96,8 +93,21 @@ _OnSubmit = event =>{
         Strength:this.state.Strength
         }]
         
+    },()=>{
+        this._OnReset();
     })
 }
+
+_OnReset = () =>{
+    this.setState({
+        coffee: "",
+        EmailAddress: "",
+        Flavor : "",
+        Size: "",
+        Strength: " ",
+    })
+}
+
 
 
 }
