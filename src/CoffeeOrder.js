@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import OrderForm from "./OrderForm";
+import OrderForm from "./OrderForm.js";
+import OrderList from "./OrderList.js"
 
 class CoffeeOrder extends Component {
     constructor(props) {
@@ -9,14 +10,21 @@ class CoffeeOrder extends Component {
         EmailAddress: "",
         Flavor : "",
         Size: "",
-        Strength: " "
+        Strength: " ",
+        orders: [{ coffee: "lemon",
+        EmailAddress: "ffff",
+        Flavor : "slkf",
+        Size: "skjd",
+        Strength:"fkmfk"}]
+
     };
 }
+
 render(){
     return(<div className="Coffee-container">
     <h1 className="Title"> Coffee Run</h1>
     <OrderForm
-    onSubmit={this._onSubmit}
+    onSubmit={this._OnSubmit}
     coffee={this.state.coffee}
     EmailAddress={this.state.EmailAddress}
     Size={this.state.Size}
@@ -28,10 +36,15 @@ render(){
     handleChangeFlavor={(event) => this._OnChangeFlavor(event.target.value)}
     handleChangeStrength={(event) => this._OnChangeStrength(event.target.value)}
     />
+<div>
+<h3>Your Order</h3>
+<OrderList  
+    orders ={this.state.orders}
+/>
 </div>
-
-
-    )}
+</div>
+    );
+}
 
 
 _OnChangeCoffee = coffeeInput =>{
@@ -72,13 +85,17 @@ _OnChangeStrength = StrengthInput =>{
 
 
 _OnSubmit = event =>{
+    console.log(event); 
     event.preventDefault();
     this.setState({
-        coffee: "",
-        EmailAddress: [...this.state.EmailAddress],
-        Flavor : [...this.state.Flavor],
-        Size:[...this.state.Size],
-        Strength:[...this.state.Strength]
+        orders: [...this.state.orders,{
+        coffee: this.state.coffee,
+        EmailAddress: this.state.EmailAddress,
+        Flavor : this.state.Flavor,
+        Size: this.state.Size,
+        Strength:this.state.Strength
+        }]
+        
     })
 }
 
